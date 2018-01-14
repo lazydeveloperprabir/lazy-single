@@ -1,2 +1,7 @@
-server
-  port:8004
+server:
+  port: 8004
+
+indianrailapi:
+  apiKey : 227fc7d778ffd5e409e6e62cdf46a31d
+  baseUrl : http://indianrailapi.com/api/v1/
+  
