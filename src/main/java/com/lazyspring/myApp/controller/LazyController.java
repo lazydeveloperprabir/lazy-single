@@ -1,7 +1,6 @@
 package com.lazyspring.myApp.controller;
 
 import java.security.Principal;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,4 +38,12 @@ public class LazyController {
     		String host,@PathVariable("trainNo") Integer trainNo ,@PathVariable("dateOfJourney") String dateOfJourney) {
     		return businessLayer.getLiveTrainStatus(trainNo,dateOfJourney);
     }
+    
+    @ResponseBody
+    @RequestMapping(value = "/getTrainLiveStatus/{trainNo}/{dateOfJourney}",method = RequestMethod.GET)
+	public String getLiveStatus(HttpServletRequest request,Principal principal,
+    		String host,@PathVariable("trainNo") Integer trainNo ,@PathVariable("dateOfJourney") String dateOfJourney) {
+		return businessLayer.getLiveStatus(trainNo, dateOfJourney);
+	}
+    
 }

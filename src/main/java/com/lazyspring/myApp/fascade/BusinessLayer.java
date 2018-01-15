@@ -57,4 +57,19 @@ public class BusinessLayer {
 		return resp.isPresent() ? resp.get() :null;
 		
 	}
+	
+	public String getLiveStatus(Integer trainNo, String dateOfJourney) {
+		Objects.requireNonNull(trainNo,"trainNo cannot be null");
+		Map<String,String> params = new HashMap<>();
+		params.put("apikey", apiKey);
+		System.out.println("the api key is :" + apiKey);
+		params.put("trainNo", trainNo.toString());
+		//params.put("dateOfJourney", DATE_FORMATER.print(dateOfJourney, Locale.getDefault()));
+		params.put("dateOfJourney",dateOfJourney);
+		
+		URI uri = UriComponentsBuilder.fromHttpUrl(railBaseUrl + "live/train/{trainNo}/date/{dateOfJourney}/apikey/{apikey}/")
+				.buildAndExpand(params).encode().toUri();
+		
+		return restUtils.getRequest(new RequestEntity<>(HttpMethod.GET, uri));		
+	}
 }
